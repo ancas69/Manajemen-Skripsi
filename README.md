@@ -4,3 +4,6 @@
 kononono
 
 SELAMAT DATANG DI PROJECT FITUR BIMBINGAN SKRIPSI
+
+
+alkdfjlkajdlfkjlakjdflkjalkdjflkajldkfjlakjdlfkjalkdjflkajdlfkjalkdjflkajldkjflakjdlfkjalkdjflajdlsfkjla

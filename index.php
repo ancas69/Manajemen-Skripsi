@@ -31,67 +31,102 @@
   </head>
   <body>
     <center>
-        <img src="pic/animeHD.jpg" class="img-fluid" alt="Responsive image">
+      <table width="70%" align="center">
+        <tr>
+          <td><br></td>
+        </tr>
+        <tr>
+          <td align="center"> 
+            <!-- <form method="POST" action="index.php">
+              nim : <input type="text" name="nim">
+            </form> -->
+          </td>
+        </tr>
+        <tr>
+          <td><br></td>
+        </tr>
+        <tr>
+          <td>
+              <?php
+                if(isset($_POST['nim']))
+                {
+                  $nim = $_POST['nim'];
+
+                  
+                  $u=$car->show_data($nim);
+
+
+                  foreach ($u as $ke) {
+                    
+                    echo "
+                        <form method='POST' action='index.php'>
+                          <div class='form-group'>
+                            <label for='exampleFormControlInput1'>Nama Mahasiswa</label>
+                            <input type='text' name='nma' class='form-control' id='exampleFormControlInput1' value=$ke[name] readonly>
+                          </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+                          <div class='form-group'>
+                            <label for='exampleFormControlInput1'>Nomer Induk Mahasiswa</label>
+                            <input type='text' name='nm' class='form-control' id='exampleFormControlInput1' value=$ke[nim] readonly>
+                          </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>             
+                          <div class='form-group'>
+                            <label for='exampleFormControlInput1'>Judul Skripsi Mahasiswa</label>
+                            <input type='text' name='jdl' class='form-control' id='exampleFormControlInput1' value=$ke[judul] readonly>
+                          </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+                          <div class='form-group'>
+                            <label for='exampleFormControlInput1'>Dosen Pembimbing Mahasiswa</label>
+                            <input type='text' name='dosbing' class='form-control' id='exampleFormControlInput1' value=$ke[namdos] readonly>
+                          </div>
+            </td>        
+          </tr>
+
+          <tr>
+            <td>
+                          <div class='form-group'>
+                            <label for='exampleFormControlInput1'>Tanggal Mahasiswa Melakukan Bimbingan</label>
+                            <input type='date' name='tanggal' class='form-control' id='exampleFormControlInput1' >
+                          </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+                          <div class='form-group'>
+                            <label for='exampleFormControlTextarea1'>Materi Bimbingan Mahasiswa</label>
+                            <textarea class='form-control' name='materi' id='exampleFormControlTextarea1' rows='3'></textarea>
+                          </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+                          <button type='submit' class='btn btn-secondary btn-lg btn-block'>SAVE</button>
+            </td>
+          </tr>              
+                        </form>
+
+                      ";  
+                    
+                  }
+                }
+              ?>
+      </table>
     </center>
-    <h1>Hello, world!</h1>
-    <br>
-    <form method="POST" action="index.php">
-      nim : <input type="text" name="nim">
-      <br>
-    </form>
-    <br>
-    <?php
-      if(isset($_POST['nim']))
-      {
-        $nim = $_POST['nim'];
-
-        
-        $u=$car->show_data($nim);
-
-
-        foreach ($u as $ke) {
-          
-          echo "
-              <form method='POST' action='index.php'>
-                <div class='form-group'>
-                  <label for='exampleFormControlInput1'>Nama Mahasiswa</label>
-                  <input type='text' name='nma' class='form-control' id='exampleFormControlInput1' value=$ke[name] readonly>
-                </div>
-                <div class='form-group'>
-                  <label for='exampleFormControlInput1'>Nomer Induk Mahasiswa</label>
-                  <input type='text' name='nm' class='form-control' id='exampleFormControlInput1' value=$ke[nim] readonly>
-                </div>
-                <div class='form-group'>
-                  <label for='exampleFormControlInput1'>Judul Skripsi Mahasiswa</label>
-                  <input type='text' name='jdl' class='form-control' id='exampleFormControlInput1' value=$ke[judul] readonly>
-                </div>
-                <div class='form-group'>
-                  <label for='exampleFormControlInput1'>Dosen Pembimbing Mahasiswa</label>
-                  <input type='text' name='dosbing' class='form-control' id='exampleFormControlInput1' value=$ke[namdos] readonly>
-                </div>
-              <!-- nama  : $ke[name]<br> -->
-              <!-- nim   : $ke[nim]<br>
-              judul : $ke[judul]<br> -->
-
-                <div class='form-group'>
-                  <label for='exampleFormControlInput1'>Tanggal Mahasiswa Melakukan Bimbingan</label>
-                  <input type='date' name='tanggal' class='form-control' id='exampleFormControlInput1'>
-                </div>
-                <!-- tanggal bimbingan : <input type='date' name='tanggal'><br>  -->
-                <div class='form-group'>
-                  <label for='exampleFormControlTextarea1'>Materi Bimbingan Mahasiswa</label>
-                  <textarea class='form-control' name='materi' id='exampleFormControlTextarea1' rows='3'></textarea>
-                </div>
-                <!-- materi bimbingan  : <textarea name='materi' rows='8' cols='60'></textarea><br> -->
-                <button type='submit' class='btn btn-secondary btn-lg btn-block'>SAVE</button>
-                <!-- <input type='submit' name='F' value='SAVE'> -->
-              </form>
-
-            ";  
-          
-        }
-      }
-    ?>
+    
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <!--     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
