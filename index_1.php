@@ -1,42 +1,178 @@
-<!DOCTYPE>	
-<HTML>
-<HEAD>
-	<TITLE>FRAMESHET</TITLE>
-</HEAD>
-<body>
-<table border="1" cellpadding="20" width="100%" height="20%">
-	<tr>
-		<td>
-			ancas
-		</td>
-	</tr>
-</table>
-<table border="1" width="100%" height="0%" >
-	<tr align="">
-		<td align="">
-			<nav>
-			<form method="POST" action="index_1.php">
+<?php
+
+    include 'class_bs.php';
+  
+    $car = new Bimbingan_skripsi();
+    $car->connect();
+    
+    if (isset($_POST['nma'])) {
+
+        $nama = $_POST['nma'];
+        $nim = $_POST['nm'];
+        $judul = $_POST['jdl'];
+        $materi = $_POST['materi'];
+        $tanggal = $_POST['tanggal'];
+        $dosen = $_POST['dosbing'];
+        $jmmulai = $_POST['mulai'];
+        $jmselesai = $_POST['selesai'];
+
+        $cek = $car->masuk_ke_log($nama,$nim,$dosen,$materi,$tanggal,$jmmulai,$jmselesai); 
+
+        if(!$cek)
+        {
+          echo '<script type="text/javascript">alert("terjadi kesalahan , data tidak dapat di save")</script>';
+          header('Refresh: 0 URL=index_1.php');
+        } 
+        else
+        {
+          echo '<script type="text/javascript">alert("data tersimpan")</script>';
+          header('Refresh: 1 URL=daftar.php');
+        }
+    }
+?>
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+    <center>
+      <table width="70%" align="center">
+        <tr>
+          <td><br></td>
+        </tr>
+        <tr>
+          <td align="center"> 
+            <!-- <form method="POST" action="index.php">
               nim : <input type="text" name="nim">
-            </form>
-            </nav>
-       	</td>
-	</tr>
-</table>
-<table border="1" width="100%" height="100%">
-	<tr>
-		<td width="25%">
-			
-		</td>
+            </form> -->
+          </td>
+        </tr>
+        <tr>
+          <td><br></td>
+        </tr>
+        <tr>
+          <td>
+              <?php
+                if(isset($_POST['nim']))
+                {
+                  $nim = $_POST['nim'];
 
-		<td width="50%">
-			<main><?php include 'index.php'?></main>
-			
-		</td>
+                  
+                  $u=$car->show_data($nim);
 
-		<td>
-			
-		</td>
-	</tr>
-</table>
-</body>
-</HTML>
+
+                  foreach ($u as $ke) {
+                    
+                    echo "
+                        <form method='POST' action='index_1.php'>
+                          <div class='form-group'>
+                            <label for='exampleFormControlInput1'>Nama Mahasiswa</label>
+                            <input type='text' name='nma' class='form-control' id='exampleFormControlInput1' value=$ke[name] readonly>
+                          </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+                          <div class='form-group'>
+                            <label for='exampleFormControlInput1'>Nomer Induk Mahasiswa</label>
+                            <input type='text' name='nm' class='form-control' id='exampleFormControlInput1' value=$ke[nim] readonly>
+                          </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>             
+                          <div class='form-group'>
+                            <label for='exampleFormControlInput1'>Judul Skripsi Mahasiswa</label>
+                            <input type='text' name='jdl' class='form-control' id='exampleFormControlInput1' value=$ke[judul] readonly>
+                          </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+                          <div class='form-group'>
+                            <label for='exampleFormControlInput1'>Dosen Pembimbing Mahasiswa</label>
+                            <input type='text' name='dosbing' class='form-control' id='exampleFormControlInput1' value=$ke[namdos] readonly>
+                          </div>
+            </td>        
+          </tr>
+
+          <tr>
+            <td>
+                          
+               <div class='form-group'>
+                <label for='exampleFormControlInput1'>Waktu Mahasiswa Melakukan Bimbingan</label>
+               </div>
+
+               <div class='form-row'>
+                <div class='col-md-3 mb-3'>
+                  <label for='validationCustom05'>Jam mulai</label>
+                  <input type='time' class='form-control' id='validationCustom05' placeholder='mulai' name='mulai' required>
+                  <div class='invalid-feedback'>
+                    tolong isi kolom ini.
+                  </div>
+                </div>
+
+                <div class='col-md-3 mb-3'>
+                  <label for='validationCustom04'>Jam seelsai</label>
+                  <input type='time' class='form-control' id='validationCustom04' placeholder='selesai' name='selesai' required>
+                  <div class='invalid-feedback'>
+                    tolong isi kolom ini.
+                  </div>
+                </div>
+
+                <div class='col-md-6 mb-3'>
+                  <label for='validationCustom04'>Tanggal</label>
+                  <input type='date' name='tanggal' class='form-control' id='exampleFormControlInput1' required>
+                  <div class='invalid-feedback'>
+                    tolong isikan tanggal.
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+                <div class='form-group'>
+                  <label for='exampleFormControlTextarea1'>Materi Bimbingan Mahasiswa</label>
+                  <textarea class='form-control' name='materi' id='exampleFormControlTextarea1' rows='3' required></textarea>
+                  <div class='invalid-feedback'>
+                    tolong isikan materi.
+                  </div>
+                </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+                          <button type='submit' class='btn btn-secondary btn-lg btn-block'>SAVE</button>
+            </td>
+          </tr>              
+                        </form>
+
+                      ";  
+                    
+                  }
+                }
+              ?>
+      </table>
+    </center>
+    
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!--     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
+      </body>
+</html>

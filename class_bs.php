@@ -28,10 +28,11 @@
 			return $this->result;
 		}
 
-		public function masuk_ke_log($nama,$nim,$dosen,$materi,$tanggal)
+		public function masuk_ke_log($nama,$nim,$dosen,$materi,$tanggal,$mulai,$selesai)
 		{
-			$query = "INSERT INTO bimbingan values ('$nama','$nim','$dosen','$materi','$tanggal')";
-			mysqli_query($this->conn , $query);
+			$query = "INSERT INTO bimbingan values ('$nama','$nim','$dosen','$materi','$tanggal','$mulai','$selesai')";
+			$this->execute($query);
+			return $this->result;
 		}
 
 	}
