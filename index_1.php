@@ -7,26 +7,25 @@
     
     if (isset($_POST['nma'])) {
 
-        $nama = $_POST['nma'];
-        $nim = $_POST['nm'];
-        $judul = $_POST['jdl'];
+        $id = $_POST['nm'];
         $materi = $_POST['materi'];
+        $id_skripsi = $_GET['id_s'];
         $tanggal = $_POST['tanggal'];
-        $dosen = $_POST['dosbing'];
-        $jmmulai = $_POST['mulai'];
-        $jmselesai = $_POST['selesai'];
+        $jam = $_POST['mulai'];
 
-        $cek = $car->masuk_ke_log($nama,$nim,$dosen,$materi,$tanggal,$jmmulai,$jmselesai); 
+        $cek = $car->masuk_ke_log($id,$materi,$id_skripsi,$tanggal,$jam);
 
         if(!$cek)
         {
           echo '<script type="text/javascript">alert("terjadi kesalahan , data tidak dapat di save")</script>';
-          header('Refresh: 0 URL=index_1.php');
+          include 'daftar.php';
         } 
         else
         {
           echo '<script type="text/javascript">alert("data tersimpan")</script>';
-          header('Refresh: 1 URL=daftar.php');
+
+          include 'daftar.php';
+
         }
     }
 ?>
@@ -40,7 +39,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title></title>
   </head>
   <body>
     <center>
@@ -61,21 +60,38 @@
         <tr>
           <td>
               <?php
-                if(isset($_POST['nim']))
+              $malaria = $_POST['nim'];
+              if($malaria==NULL || !$malaria)
+              {
+              	echo "<center>SILAHKAN MASUKKAN NIM</center>";
+              }
+	          else
+	          {
+	           	if(isset($_POST['nim']))
                 {
                   $nim = $_POST['nim'];
-
                   
                   $u=$car->show_data($nim);
+                  
+                  $status = 0;
+                   foreach ($u as $k){
+                   	$status++;
+                   }
 
+                  if($status==0)
+                  {
+                  	echo "<center>NIM tidak ada</center>";
+                  }
+                  else
+                  {
 
                   foreach ($u as $ke) {
                     
                     echo "
-                        <form method='POST' action='index_1.php'>
+                        <form method='POST' action='index_1.php?id_s=$ke[idsk]'>
                           <div class='form-group'>
                             <label for='exampleFormControlInput1'>Nama Mahasiswa</label>
-                            <input type='text' name='nma' class='form-control' id='exampleFormControlInput1' value=$ke[name] readonly>
+                            <input type='text' name='nma' class='form-control' id='exampleFormControlInput1' value='$ke[name]' readonly>
                           </div>
             </td>
           </tr>
@@ -84,7 +100,7 @@
             <td>
                           <div class='form-group'>
                             <label for='exampleFormControlInput1'>Nomer Induk Mahasiswa</label>
-                            <input type='text' name='nm' class='form-control' id='exampleFormControlInput1' value=$ke[nim] readonly>
+                            <input type='text' name='nm' class='form-control' id='exampleFormControlInput1' value='$ke[nim]' readonly>
                           </div>
             </td>
           </tr>
@@ -93,7 +109,7 @@
             <td>             
                           <div class='form-group'>
                             <label for='exampleFormControlInput1'>Judul Skripsi Mahasiswa</label>
-                            <input type='text' name='jdl' class='form-control' id='exampleFormControlInput1' value=$ke[judul] readonly>
+                            <input type='text' name='jdl' class='form-control' id='exampleFormControlInput1' value='$ke[judul]' readonly>
                           </div>
             </td>
           </tr>
@@ -102,7 +118,7 @@
             <td>
                           <div class='form-group'>
                             <label for='exampleFormControlInput1'>Dosen Pembimbing Mahasiswa</label>
-                            <input type='text' name='dosbing' class='form-control' id='exampleFormControlInput1' value=$ke[namdos] readonly>
+                            <input type='text' name='dosbing' class='form-control' id='exampleFormControlInput1' value='$ke[namdos]' readonly>
                           </div>
             </td>        
           </tr>
@@ -118,14 +134,6 @@
                 <div class='col-md-3 mb-3'>
                   <label for='validationCustom05'>Jam mulai</label>
                   <input type='time' class='form-control' id='validationCustom05' placeholder='mulai' name='mulai' required>
-                  <div class='invalid-feedback'>
-                    tolong isi kolom ini.
-                  </div>
-                </div>
-
-                <div class='col-md-3 mb-3'>
-                  <label for='validationCustom04'>Jam seelsai</label>
-                  <input type='time' class='form-control' id='validationCustom04' placeholder='selesai' name='selesai' required>
                   <div class='invalid-feedback'>
                     tolong isi kolom ini.
                   </div>
@@ -156,7 +164,7 @@
 
           <tr>
             <td>
-                          <button type='submit' class='btn btn-secondary btn-lg btn-block'>SAVE</button>
+                          <button type='submit' class='btn btn-secondary btn-lg btn-block' >SAVE</button>
             </td>
           </tr>              
                         </form>
@@ -164,7 +172,15 @@
                       ";  
                     
                   }
+              	  }
                 }
+                else
+                {
+                	echo "<center>SILAHKAN MASUKKAN NIM</center>";
+                }
+       
+	           }
+                
               ?>
       </table>
     </center>

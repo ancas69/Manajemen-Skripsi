@@ -1,46 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <title></title>
 </head>
 <body>
 
+<table width="100%" height="100%" cellpadding="20">
+  <tr>
+    <td>
+
 <div class="container">
-  <h2>Dark Striped Table</h2>
-  <p>Combine .table-dark and .table-striped to create a dark, striped table:</p>            
-  <table class="table table-dark table-striped">
+
+  <h2>Log Bimbingan Skripsi</h2>
+  <p>berikut merupakan dafar riwayat bimbingan mahasiswa : </p>            
+  <table class="table table-dark table-striped" align="center">
     <thead>
-      <tr>
-        <th>Firstname</th>
-        <th>Lastname</th>
-        <th>Email</th>
+      <tr align="center">
+        <th>NAMA</th>
+        <th>NIM</th>
+        <th>DOSEN PEMBIMBING</th>
+        <th>MATERI BIMBINGAN</th>
+        <th colspan="2" align="center">WAKTU BIMBINGAN</th>
+      </tr>
+      <tr align="center">
+        <th colspan="4"></th>
+        <th align="center">tanggal</th>
+        <th align="center">jam mulai</th>
       </tr>
     </thead>
-    <tbody>
-      <tr>
-        <td>John</td>
-        <td>Doe</td>
-        <td>john@example.com</td>
-      </tr>
-      <tr>
-        <td>Mary</td>
-        <td>Moe</td>
-        <td>mary@example.com</td>
-      </tr>
-      <tr>
-        <td>July</td>
-        <td>Dooley</td>
-        <td>july@example.com</td>
-      </tr>
+    <tbody align="center">
+
+      <?php
+      $g = $car->select_one_mahasiswa($id);
+
+      foreach($g as $key)
+      {
+        echo"
+          <tr>
+            <td>$key[namaa]</td>
+            <td>$key[Nm]</td>
+            <td>$key[namdis]</td>
+            <td>$key[materi_bimbingan]</td>
+            <td>$key[tanggal_bimbingan]</td>
+            <td>$key[jam]</td>
+          </tr>
+        ";
+      }
+      ?>
     </tbody>
   </table>
 </div>
+<br>
+<br>
+<center>
+  <a class="btn btn-primary" href="index.php" role="button">BACK</a>
+</center>
+    </td>
+  </tr>
+    
+</table>
 
 </body>
 </html>
