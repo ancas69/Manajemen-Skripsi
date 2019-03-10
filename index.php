@@ -32,7 +32,7 @@
         border-radius: 30px;
         padding-top: 20px;
         padding-bottom: 20px;
-        box-shadow: 0px 0px 100px 4px #d1d1d1;
+        box-shadow: 0px 0px 10px 4px #d1d1d1;
       }
   </style>
 
@@ -97,12 +97,13 @@
                   
     </td>
 
-    <td width="50%" rowspan="">
-      <main  class="kotak">
+    <td width="50%" rowspan="" class="pt-4">
+      <main  class="kotak" >
         <?php 
         if(isset($_POST['nim'])){
         include 'index_1.php';
-        }else echo "<center>SILAHKAN MASUKKAN NIM</center>";
+        }else echo "<center><div class='alert alert-secondary' role='alert'>SILAHKAN MASUKKAN NIM
+</div></center>";
         ?>
       </main>
     </td>
@@ -112,11 +113,15 @@
     </td>
   </tr>
 
-  <tr height="20%">
-    <td colspan="3">
-        <br>
-        <br>
-        <br>
+  <tr height="10%">
+    <td colspan="3">\
+        <center>
+          <div class="pb-4">
+            <font size="2" face="arial">
+              Copyright Programmer-fitur-Bimbingan-Skripsi
+            </font> 
+          </div>
+        </center>
     </td>
   </tr>
 
