@@ -40,7 +40,7 @@
   </head>
 <body class="bgimage">
 <table width="100%" height="20%">
-  <tr align="center">
+  <tr align="center" class="border rounded">
     <td>
       <img src="desain/header.jpg">
     </td>
@@ -50,7 +50,7 @@
 <table width="100%" height="10%">
   <tr align="">
     <td height="30%">
-          <nav class="navbar navbar-expand-lg navbar-light bg-light bgimage border-bottom border-top">
+          <nav class="navbar navbar-expand-lg navbar-light bg-light bgimage border rounded">
             <a class="navbar-brand" href="#"><img src="desain/Logo.png" class="mr-1 mt-1 rounded-circle" style="width:35px;"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
@@ -102,8 +102,7 @@
         <?php 
         if(isset($_POST['nim'])){
         include 'index_1.php';
-        }else echo "<center><div class='alert alert-secondary' role='alert'>SILAHKAN MASUKKAN NIM
-</div></center>";
+        }else{ echo "<br><br><img class='align-middle' src='desain/Logo.png'>";}
         ?>
       </main>
     </td>
@@ -114,11 +113,11 @@
   </tr>
 
   <tr height="10%">
-    <td colspan="3">\
+    <td colspan="3">
         <center>
-          <div class="pb-4">
+          <div class="border rounded pt-2 pb-2 border-light fixed-bottom">
             <font size="2" face="arial">
-              Copyright Programmer-fitur-Bimbingan-Skripsi
+              Copyright &copy; Programmer-fitur-Bimbingan-Skripsi UAD 2019
             </font> 
           </div>
         </center>
