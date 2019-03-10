@@ -18,13 +18,13 @@
         if(!$cek)
         {
           echo '<script type="text/javascript">alert("terjadi kesalahan , data tidak dapat di save")</script>';
-          include 'daftar.php';
+          header('Refresh: 0 URL=index.php');
         } 
         else
         {
           echo '<script type="text/javascript">alert("data tersimpan")</script>';
 
-          include 'daftar.php';
+          header('Refresh: 0 URL=index.php');
 
         }
     }
