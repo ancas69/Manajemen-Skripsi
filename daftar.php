@@ -44,16 +44,16 @@
               $car = new Bimbingan_skripsi();
               $car->connect();
               $malaria = $_POST['nim'];
-              $ulala=$car->show_data($malaria);
+              $ulala=$car->show_data($malaria); // sebagai pendeteksi saja
               if($malaria==NULL || !$ulala)
               {
                 echo "<center><div class='alert alert-secondary' role='alert'>SILAHKAN MASUKKAN NIM
-</div></center>";
+                      </div></center>";
               }
               else
               {
                   $id = $_POST['nim'];
-                  $g = $car->select_one_mahasiswa($id);
+                  $g = $car->select_one_mahasiswa($id); // untuk menampilkan daftar atau log bimbingan satu mahasiswa
 
                   foreach($g as $key)
                   {

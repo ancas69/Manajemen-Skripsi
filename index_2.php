@@ -27,8 +27,6 @@
         width: 80%;
         height: 100%;
         background: rgba(0,0,0,.5);
-        /*meletakkan form ke tengah*/
-
         border-radius: 30px;
         padding-top: 20px;
         padding-bottom: 20px;
@@ -39,15 +37,19 @@
         background: rgba(0,0,0,.5);
         box-shadow: 0px 0px 10px 1px #d1d1d1;
       }
-
+      .navbar1{
+        background-image: url(desain/navbar.jpg);
+        background-position: center;
+      }
       .bodyBG{
-        background: white;
+        background-position: 50%;
+        background-image: url(desain/bguad.jpg);
       }
   </style>
 
     <title>MANAJEMEN SKRISPSI</title>
   </head>
-<body class="bodyBG">
+<body >
 <table width="100%" class="bgimage" height="10%">
   <tr align="left" class="border rounded">
     <td>
@@ -59,7 +61,7 @@
 <table width="100%" height="10%">
   <tr align="">
     <td>
-          <nav class="navbar navbar-expand-lg navbar-light bg-light bgimage border rounded">
+          <nav class="navbar navbar-expand-lg navbar-light bg-light navbar1 border rounded">
             <a class="navbar-brand" href="#"><img src="desain/Logo.png" class="mr-1 mt-1 rounded-circle" style="width:45px;"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
@@ -84,7 +86,7 @@
   </tr>
 </table>
 
-<table width="100%" height="100%" class="bg-secondary">
+<table width="100%" height="100%" class="bodyBG">
 
   <tr align="center">
 
@@ -93,7 +95,7 @@
         <?php 
             if(isset($_POST['nim'])){
             include 'daftar.php';
-            }else{ echo "<br><br><img class='align-middle' src='desain/Logo.png'>";}
+            }
         ?>
       </main>
     </td>

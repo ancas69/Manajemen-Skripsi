@@ -43,7 +43,7 @@
   </head>
   <body>
     <center>
-      <table width="70%" align="center">
+      <table width="70%" align="center" class="text text-light">
         <tr>
           <td><br></td>
         </tr>
